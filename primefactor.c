@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define SIZE 8;
-//Converter for hex to INt
+// Converter for hex to INt
 int hexToInt(unsigned char num)
 {
   return (num - '0' > 9) ? num - '7' : num - '0';
@@ -45,7 +45,7 @@ void intToHex(unsigned int number, unsigned char *ret)
   return;
 }
 
-// Multiplier needed get product of two hex numbers and return to temp variable 
+// Multiplier needed get product of two hex numbers and return to temp variable
 int multiHex(unsigned char top, unsigned char bottom)
 {
   int valT = hexToInt(top);
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     { // A
       // printf("%d %d\n", num1[j], num2[i]);
       t = multiHex(num1[j], num2[i]);
-      printf("|%c%c|", t[0], t[1]);
+      printf("=%d * %d=|%c%c|\n", j, i, t[0], t[1]);
     }
   }
 
