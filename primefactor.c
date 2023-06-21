@@ -8,6 +8,11 @@ int hexToInt(unsigned char num)
   return (num - '0' > 9) ? num - '7' : num - '0';
 }
 
+unsigned char intToHexSingle(unsigned int num)
+{
+  return (num >= 0 && num <= 9) ? (num + '0') : (num + '7');
+}
+
 // Converter needed for in back to hex
 void intToHex(unsigned int number, unsigned char *ret)
 {
@@ -21,25 +26,11 @@ void intToHex(unsigned int number, unsigned char *ret)
   {
     temp = number / 16;
     number %= 16;
-    if (temp >= 0 && temp <= 9)
-    {
-      ret[0] = temp + '0';
-    }
-    else
-    {
-      ret[0] = temp + '7';
-    }
+    ret[0] = (temp >= 0 && temp <= 9) ? (temp + '0') : (temp + '7');
   }
 
   temp = number;
-  if (temp >= 0 && temp <= 9)
-  {
-    ret[1] = temp + '0';
-  }
-  else
-  {
-    ret[1] = temp + '7';
-  }
+  ret[1] = (temp >= 0 && temp <= 9) ? (temp + '0') : (temp + '7');
 
   // printf("%c%c", ret[0], ret[1]); // As of here it multiplying fine
   return;
@@ -56,10 +47,25 @@ int multiHex(unsigned char top, unsigned char bottom)
   return &ret;
 }
 
-unsigned char addHex(unsigned char *temp, unsigned char placeholder)
+int addHex(unsigned char temp, unsigned char *collect)
 {
+  // printf("%c %c\n", temp, collect);
+  printf("%c\n", collect);
+  int add = hexToInt(temp) + hexToInt(collect);
+  int val = 0;
+  if (add > 15)
+  {
+    add %= 15;
+    val += 1;
+  }
 
-  return '1';
+  collect = intToHexSingle(add);
+
+  if (val > 0)
+  {
+    return 1;
+  }
+  return 0;
 }
 
 int main(int argc, char *argv[])
@@ -67,7 +73,9 @@ int main(int argc, char *argv[])
   unsigned char num1[] = {'1', '2', 'A', 'B'}; // A
   unsigned char num2[] = {'5', '1', 'D', '1'}; // B
 
-  unsigned char c[8];
+  unsigned char collection[8] = {'0', '0', '0', '0', '0', '0', '0', '0'};
+  unsigned char *c;
+  c = collection;
   unsigned char *t;
   // printf("%d", sizeof(num1));
 
@@ -76,10 +84,18 @@ int main(int argc, char *argv[])
     for (int j = sizeof(num1) - 1; j >= 0; j--)
     { // A
       // printf("%d %d\n", num1[j], num2[i]);
+
       t = multiHex(num1[j], num2[i]);
-      printf("=%d * %d=|%c%c|\n", j, i, t[0], t[1]);
+      // printf("%c\n", t[1]);
+      // TODO : THIS IS ERRORING
+      addHex(t[1], c[i + j + 1]);
+      addHex(t[0], c[i + j]);
     }
   }
 
+  for (int x = 0; x < sizeof(c); x++)
+  {
+    // printf("%c", c[x]);
+  }
   return 0;
 }
