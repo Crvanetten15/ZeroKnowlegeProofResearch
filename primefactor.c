@@ -43,23 +43,25 @@ int multiHex(unsigned char top, unsigned char bottom)
   int valB = hexToInt(bottom);
   unsigned char ret[2] = {'0', '0'};
   intToHex(valT * valB, ret);
-
+  printf("%c %c\n", ret[0], ret[1]);
+  // TODO : WHY DOES THIS (above) make a change to the answer
   return &ret;
 }
 
-int addHex(unsigned char temp, unsigned char *collect)
+int addHex(unsigned char temp, unsigned char *collect, unsigned int carry)
 {
-  // printf("%c %c\n", temp, collect);
-  printf("%c\n", collect);
-  int add = hexToInt(temp) + hexToInt(collect);
+  int add = hexToInt(temp) + hexToInt(*collect) + carry;
+  // printf("%d collected\n", hexToInt(*collect));
+  // printf("%d temp\n", hexToInt(temp));
+  // printf("%d total\n", add);
   int val = 0;
   if (add > 15)
   {
-    add %= 15;
+    add %= 16;
     val += 1;
   }
-
-  collect = intToHexSingle(add);
+  // printf("%c hex total", intToHexSingle(add));
+  *collect = intToHexSingle(add);
 
   if (val > 0)
   {
@@ -71,7 +73,7 @@ int addHex(unsigned char temp, unsigned char *collect)
 int main(int argc, char *argv[])
 {
   unsigned char num1[] = {'1', '2', 'A', 'B'}; // A
-  unsigned char num2[] = {'5', '1', 'D', '1'}; // B
+  unsigned char num2[] = {'5', '1', 'D', '2'}; // B
 
   unsigned char collection[8] = {'0', '0', '0', '0', '0', '0', '0', '0'};
   unsigned char *c;
@@ -86,16 +88,27 @@ int main(int argc, char *argv[])
       // printf("%d %d\n", num1[j], num2[i]);
 
       t = multiHex(num1[j], num2[i]);
-      // printf("%c\n", t[1]);
       // TODO : THIS IS ERRORING
-      addHex(t[1], c[i + j + 1]);
-      addHex(t[0], c[i + j]);
+      int carry = addHex(t[1], &c[i + j + 1], 0);
+      addHex(t[0], &c[i + j], carry);
+      printf("One addtion |||  \n ");
+      for (int x = 0; x < sizeof(collection); x++)
+      {
+        printf("%c ", collection[x]);
+      }
+      printf("\n");
     }
+    // printf("collection ||| \n ");
+    // for (int x = 0; x < sizeof(collection); x++)
+    // {
+    //   printf("%c ", collection[x]);
+    // }
+    // printf("\n");
   }
 
-  for (int x = 0; x < sizeof(c); x++)
-  {
-    // printf("%c", c[x]);
-  }
+  // for (int x = 0; x < sizeof(collection); x++)
+  // {
+  //   printf("%c ", collection[x]);
+  // }
   return 0;
 }
