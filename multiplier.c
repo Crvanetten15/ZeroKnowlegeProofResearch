@@ -18,9 +18,7 @@ void multiHex(unsigned char a, unsigned char b, unsigned char *t)
 // Adding each set of hex pairs and dealing with the carry values
 int addHex(unsigned char t, unsigned char *c, unsigned char *carry)
 {
-  // printf("%02X - \n", *c);
   unsigned char total = t + *c + *carry;
-  // printf("%02X - \n", total);
   if (total < t || total < *c)
   {
     *carry = 0x01;
@@ -34,6 +32,7 @@ int addHex(unsigned char t, unsigned char *c, unsigned char *carry)
 
 int main(int argc, char *argv[])
 {
+  // Mulitplicates and Collection Array
   unsigned char num1[] = {// A C2FFCD12
                           0x12,
                           0xCD};
@@ -48,6 +47,7 @@ int main(int argc, char *argv[])
 
   unsigned char temp[2] = {0x00, 0x00};
 
+  // Pointers needed, Can they be cleaned up?
   unsigned char *c;
   c = collection;
 
@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
   unsigned char *x;
   x = carry;
 
+  // Nested loops used to navigate the two arrays
   for (int i = 0; i < sizeof(num2); i++)
   { // num 2 loop
     for (int j = 0; j < sizeof(num1); j++)
@@ -68,6 +69,7 @@ int main(int argc, char *argv[])
     }
   }
 
+  // Printing Answer of two numbers multiplied
   for (int x = 0; x < sizeof(collection); x++)
   {
     printf("%02X ", collection[x]);
