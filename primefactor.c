@@ -72,7 +72,7 @@ int addHex(unsigned char temp, unsigned char *collect, unsigned int carry)
 
 int main(int argc, char *argv[])
 {
-  unsigned char num1[] = {'1', '2', 'A', 'B'}; // A
+  unsigned char num1[] = {'1', '2', 'A', 'B'}; // A 12AB
   unsigned char num2[] = {'5', '1', 'D', '2'}; // B
 
   unsigned char collection[8] = {'0', '0', '0', '0', '0', '0', '0', '0'};
