@@ -1,8 +1,8 @@
-gcc -c -g multiplier.c  |
-gcc -c -g ex.c   |
-gcc -o main ex.o multiplier.o 
+gcc -c -g multiplier.c  ;
+gcc -c -g main.c   ;
+gcc -o main main.o multiplier.o 
 
 # All above to run file as header
 
-rm *.exe | 
+rm *.exe ; 
 rm *.o
