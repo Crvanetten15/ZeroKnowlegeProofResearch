@@ -1,22 +1,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "multiplier.h"
 
-#define SIZE 8;
-
-// Mulitplying and bit shifting answer to fit in temporary array
+// Multiply and bit-shift the result to fit in a temporary array
 void multiHex(unsigned char a, unsigned char b, unsigned char *t)
 {
   unsigned int multiply_result = a * b;
 
   t[0] = multiply_result & 0xFF;
   t[1] = (multiply_result >> 8) & 0xFF;
-
-  return 0;
 }
 
-// Adding each set of hex pairs and dealing with the carry values
-int addHex(unsigned char t, unsigned char *c, unsigned char *carry)
+// Add each pair of hex values and handle carry values
+void addHex(unsigned char t, unsigned char *c, unsigned char *carry)
 {
   unsigned char total = t + *c + *carry;
   if (total < t || total < *c)
@@ -30,50 +27,47 @@ int addHex(unsigned char t, unsigned char *c, unsigned char *carry)
   *c = total;
 }
 
-int main(int argc, char *argv[])
+unsigned char *hex_multiplier(unsigned char *array1, unsigned char *array2, int size1, int size2)
 {
-  // Mulitplicates and Collection Array
-  unsigned char num1[] = {// A C2FFCD12
-                          0x12,
-                          0xCD};
-  unsigned char num2[] = {// B C1BB0A01
-                          0x01,
-                          0x0A};
-  unsigned char collection[4] = {// C 00 00 00 00  00 00 00 00
-                                 0x00,
-                                 0x00,
-                                 0x00,
-                                 0x00};
+  unsigned char *collection = (unsigned char *)malloc((size1 + size2) * sizeof(unsigned char));
+  if (collection == NULL)
+  {
+    printf("Memory allocation failed!");
+    return NULL;
+  }
+  else
+  {
+    for (int k = 0; k < size1 + size2; k++)
+    {
+      collection[k] = 0x00;
+    }
+  }
 
   unsigned char temp[2] = {0x00, 0x00};
 
-  // Pointers needed, Can they be cleaned up?
-  unsigned char *c;
-  c = collection;
-
-  unsigned char *t;
-  t = temp;
-
+  unsigned char *c = collection;
+  unsigned char *t = temp;
   unsigned char carry = 0x00;
-  unsigned char *x;
-  x = carry;
+  unsigned char *x = &carry;
 
   // Nested loops used to navigate the two arrays
-  for (int i = 0; i < sizeof(num2); i++)
-  { // num 2 loop
-    for (int j = 0; j < sizeof(num1); j++)
-    { // num 1 loop
-      multiHex(num1[j], num2[i], t);
-      addHex(t[0], &c[i + j], &x);
-      addHex(t[1], &c[i + j + 1], &x);
+  for (int i = 0; i < size2; i++)
+  { // num2 loop
+    for (int j = 0; j < size1; j++)
+    { // num1 loop
+      multiHex(array1[j], array2[i], t);
+      addHex(t[0], &c[i + j], x);
+      addHex(t[1], &c[i + j + 1], x);
     }
   }
 
   // Printing Answer of two numbers multiplied
-  for (int x = 0; x < sizeof(collection); x++)
-  {
-    printf("%02X ", collection[x]);
-  }
+  // printf("Multiplied Array: ");
+  // for (int i = 0; i < size1 + size2; i++)
+  // {
+  //   printf("%02X ", collection[i]);
+  // }
+  // printf("\n");
 
-  return 0;
+  return collection;
 }
