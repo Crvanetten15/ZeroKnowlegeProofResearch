@@ -61,13 +61,5 @@ unsigned char *hex_multiplier(unsigned char *array1, unsigned char *array2, int 
     }
   }
 
-  // Printing Answer of two numbers multiplied
-  // printf("Multiplied Array: ");
-  // for (int i = 0; i < size1 + size2; i++)
-  // {
-  //   printf("%02X ", collection[i]);
-  // }
-  // printf("\n");
-
   return collection;
 }
