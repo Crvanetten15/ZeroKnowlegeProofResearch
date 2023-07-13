@@ -1,48 +1,40 @@
 #include <stdio.h>
 #include "multiplier.h"
 
-void hex_subtract()
-{
-}
+// Needed for Debugging
+// void printInBin(unsigned char i)
+// {
+//     while (i)
+//     {
+//         if (i & 1)
+//             printf("1");
+//         else
+//             printf("0");
 
-void hex_bitshift()
-{
-}
+//         i >>= 1;
+//     }
+//     printf("\n");
+// }
 
-void printInBin(unsigned char i)
+unsigned char reduct(unsigned char a, unsigned char n)
 {
-    while (i)
+    unsigned char x = 0x01;
+    unsigned char k = 0x01;
+
+    while (x < n)
     {
-        if (i & 1)
-            printf("1");
-        else
-            printf("0");
-
-        i >>= 1;
+        x <<= 1;
+        k++;
     }
-    printf("\n");
-}
-unsigned char reduct(unsigned char a, unsigned char m, unsigned char n)
-{
-    unsigned char k = 0x03;
-    // printInBin(k);
-
+    unsigned char m = 0x01;
+    // m == 1 in this example
     unsigned char q = (a * m) >> k;
-    // printInBin(a * m);
-    // printInBin(q);
-
-    unsigned char i = q;
-    printInBin(q * n);
-    printf(" %d\n", q * n);
-    printInBin(a);
-    printf(" %d\n", a);
     a -= q * n;
 
-    // Since C is now with 2n, we check for if it is larger than n, if so subtract n once
-    if (a >= n)
+    // Researching I saw reports of it being between 0 - 3n (while loop fixes it)
+    while (a >= n)
     {
         a -= n;
-        printInBin(a);
     }
     return a;
 }
@@ -50,19 +42,9 @@ unsigned char reduct(unsigned char a, unsigned char m, unsigned char n)
 int main(int argc, char *argv[])
 {
 
-    unsigned char a = 0x09;
-    unsigned char n = 0x04;
-    unsigned char m = 0x08;
+    unsigned char a = 0xFe;
+    unsigned char n = 0x03;
 
-    printf("\n%02X", reduct(a, m, n));
-    printf("\n%02X", a % n);
-
-    // 1 / n == m / 2 ^k
-    // c = a * b mod n
-
-    // c = q * n + r (with r being our answer)
-
-    // r = c - q * n
-
-    // q = c * m / 2^k
+    printf("Barretts Reduction : \n%02X", reduct(a, n));
+    printf("\nMod Operator : \n%02X", a % n);
 }
