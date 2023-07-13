@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void subtractArrays(const unsigned char *a, const unsigned char *b, unsigned char *result, int size)
+void subtractBigHexNum(unsigned char *a, unsigned char *b, unsigned char *result, int size)
 {
   unsigned char carry = 0;
 
@@ -34,7 +34,7 @@ int main()
 
   int size = sizeof(num1) / sizeof(num1[0]);
 
-  subtractArrays(num1, num2, result, size);
+  subtractBigHexNum(num1, num2, result, size);
   for (int i = 0; i < 2; i++)
   {
     printf("%02X ", result[i]);
