@@ -1,0 +1,35 @@
+
+
+
+
+
+Bit Shifting through an Array 
+
+Say we have the value 0000 1100(0x0C), and 0010 0100(0x24) representing 0x240C
+
+If we just bit shift each element by 4 we get (00000000, 00000010) giving us an incorrect answer
+
+If I were to  first "grab" the value of the LSBs from the large number, shift it, then shift the bottom and OR the saved bit would that work? 
+
+For example, 
+
+
+val1 = 0000 1100
+
+Shifting is k = 4;
+
+unsigned char store = 0000 1100 & 1111
+
+val2 = 0010 0100 >>= 4
+
+0000 0010
+
+THEN
+
+val2 = store | 0000 0010 // with store being 1100 0000 after a shift
+
+val2 = 1100 0010 (0x00C2)
+
+
+For longer arrays repeat the process
+
