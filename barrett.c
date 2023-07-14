@@ -26,12 +26,12 @@ unsigned char reduct(unsigned char a, unsigned char n)
         x <<= 1;
         k++;
     }
-    unsigned char m = 0x01; // This is due to the next highest power of two will never be more than 1.999999 times larger and we floor it 
+    unsigned char m = 0x01; // This is due to the next highest power of two will never be more than 1.999999 times larger and we floor it
     // m == 1 in this example
     unsigned char q = (a * m) >> k;
     a -= q * n;
 
-    // Researching I saw reports of it being between 0 - 3n (while loop fixes it)
+    // Researching I saw reports of it being between [0 - 3n) instead of [0-2n) (while loop fixes it)
     while (a >= n)
     {
         a -= n;
@@ -48,5 +48,3 @@ int main(int argc, char *argv[])
     printf("Barretts Reduction : \n%02X", reduct(a, n));
     printf("\nMod Operator : \n%02X", a % n);
 }
-
-

@@ -6,3 +6,8 @@ gcc -o main main.o multiplier.o
 
 rm *.exe ; 
 rm *.o
+
+
+gcc -c -g subtraction.c  ;
+gcc -c -g practice.c   ;
+gcc -o main practice.o subtraction.o 
