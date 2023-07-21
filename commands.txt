@@ -2,6 +2,11 @@ gcc -c -g multiplier.c  ;
 gcc -c -g main.c   ;
 gcc -o main main.o multiplier.o 
 
+
+gcc -c -g shifting.c  ;
+gcc -c -g main2.c   ;
+gcc -o main main2.o shifting.o 
+
 # All above to run file as header
 
 rm *.exe ; 
