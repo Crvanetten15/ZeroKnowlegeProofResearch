@@ -1,13 +1,7 @@
 #include <stdio.h>
 
-int main()
+int FindHex(unsigned char *value)
 {
-  unsigned char value[4] = {
-      0x12,
-      0x13,
-      0xCD,
-      0xFE,
-  };
 
   int end;
   end = (sizeof(value) / sizeof(value[0])) - 1;
@@ -21,13 +15,13 @@ int main()
   {
     if (val == 0x80)
     {
-      printf("Overflow : ");
+      // printf("Overflow : ");
       val = 0x00;
       break;
     }
-    printf("%02X ", value[end]);
+    // printf("%02X ", value[end]);
     val <<= 1;
-    printf("%02X\n", val);
+    // printf("%02X\n", val);
     k++;
   }
 
@@ -37,6 +31,6 @@ int main()
   }
   int size = ((sizeof(value) / sizeof(value[0])) * 7) - 7;
   k += size;
-  printf("%d", k);
-  return 0;
+  // printf("%d", k);
+  return k;
 }
