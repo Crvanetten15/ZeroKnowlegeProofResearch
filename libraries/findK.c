@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "findK.h"
 
-int FindHex(unsigned char *value)
+int FindHexK(unsigned char *value)
 {
 
   int end;
