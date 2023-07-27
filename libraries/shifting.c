@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "shifting.h"
 
-void hexBitShift(unsigned char *value, int k)
+void hexBitShift(unsigned char *value, int k, int size)
 {
   unsigned char mask_m[8] = {
       0x1,
@@ -12,10 +12,14 @@ void hexBitShift(unsigned char *value, int k)
       0x3F,
       0x7F};
 
-  for (int i = 0; i < (sizeof(value) / sizeof(value[0])); i++)
+  // printf("%d here", k);
+
+  for (int i = 0; i < size; i++)
   {
+    // printf("V = %02X\n", value[i]);
     value[i] >>= k;
-    if (i < 3)
+    // printf("0 = %02X\n", value[i]);
+    if (i < size - 1)
     {
       value[i] = (((value[i + 1] & mask_m[k]) << 8 - k) | value[i]);
     }
