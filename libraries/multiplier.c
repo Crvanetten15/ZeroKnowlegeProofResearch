@@ -55,7 +55,9 @@ unsigned char *hex_multiplier(unsigned char *array1, unsigned char *array2, int 
   { // num2 loop
     for (int j = 0; j < size1; j++)
     { // num1 loop
+      // printf("Start");
       multiHex(array1[j], array2[i], t);
+      // printf("Pass");
       addHex(t[0], &c[i + j], x);
       addHex(t[1], &c[i + j + 1], x);
     }

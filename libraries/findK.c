@@ -3,9 +3,14 @@
 
 int FindHexK(unsigned char *value)
 {
-
   int end;
   end = (sizeof(value) / sizeof(value[0])) - 1;
+
+  // for (int i = 0; i < end; i++)
+  // {
+
+  //   printf("%d ", i);
+  // }
   unsigned char val = 0b1;
   // printf("%02X", value[end]);
   int k = 0;

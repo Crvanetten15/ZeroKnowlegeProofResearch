@@ -16,3 +16,14 @@ rm *.o
 gcc -c -g subtraction.c  ;
 gcc -c -g practice.c   ;
 gcc -o main practice.o subtraction.o 
+
+gcc -c -g size.c  ;
+gcc -c -g TEST.c   ;
+gcc -o main TEST.o size.o 
+
+gcc -c -g multiplier.c  ;
+gcc -c -g subtraction.c  ;
+gcc -c -g shifting.c  ;
+gcc -c -g findK.c  ;
+gcc -c -g BarrettRed.c   ;
+gcc -o main BarrettRed.o multiplier.o subtraction.o shifting.o findK.o

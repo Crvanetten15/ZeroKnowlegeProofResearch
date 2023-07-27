@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "shifting.h"
+#include "size.h"
 
 int main()
 {
@@ -8,11 +9,5 @@ int main()
       0x13,
       0xCD,
       0x2E};
-
-  hexBitShift(value, 4);
-
-  for (int i = 0; i < 4; i++)
-  {
-    printf("%02X", value[i]);
-  }
+  printf("%d", trueSizeOf(value));
 }
