@@ -60,6 +60,8 @@ int main(int argc, char *argv[])
         hexBitShift(c, k, SIZE * 2);
     }
 
+    // TODO : Last Needed portion is repetitive minus by n [0 -- 3n)
+
     for (int i = 0; i < (SIZE * 2); i++)
     {
         printf("%02X ", c[i]);
