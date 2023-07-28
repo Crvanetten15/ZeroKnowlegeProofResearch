@@ -1,8 +1,5 @@
-- How do I add variables to a header file? 
+Where is my logic missing or is it my code failing? 
 
-Variable declaration; NOT INITIAL
-- NOT A INITIALIZATION BUT AN INITIALIZATION FUNCTION
+Poster is completed, code just needs to be added
 
-- Started to make poster and essay. 
-
-- I have made I believe all libraries needed piecing it together currently. 
+Paper introduction is completed. 

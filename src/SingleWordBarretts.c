@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "multiplier.h"
 
 // Needed for Debugging
 // void printInBin(unsigned char i)

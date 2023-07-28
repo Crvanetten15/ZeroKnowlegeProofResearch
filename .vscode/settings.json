@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "stdio.h": "c",
-    "shifting.h": "c"
+    "shifting.h": "c",
+    "multiplier.h": "c",
+    "findk.h": "c"
   }
 }

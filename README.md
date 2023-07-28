@@ -4,6 +4,10 @@ For this project I am conducting research and implementing Zero Knowledge Proofs
 
 This project will detail a report of different implementations of ZKP equations focusing on Schnorr's Protocol. Schnorrs Protocol is a mathematical equation that is an Honest-verifier zero knowledge (HVZK) proof. The Schnorr signature scheme is a robust and efficient digital signature algorithm widely used in modern cryptographic applications. It relies on the hardness of mathematical problems, such as the discrete logarithm problem, to provide security. One of its notable features is signature aggregation, allowing multiple signatures to be combined into a single signature. This property offers benefits like improved scalability and privacy, making it an attractive choice for various blockchain and cryptocurrency protocols. With smaller key sizes and strong security guarantees, the Schnorr signature scheme continues to be a significant advancement in digital signature technology.
 
+A quick review of the math is shown below given the equations and exchange of information between verifier and prover. 
+
+![](Images/SPgraph.png)
+
 ## Table of Contents
 
 - [Project Title](#Zero-Knowledge-Proof-Research)
@@ -35,8 +39,16 @@ Barretts.c
 GBD needs to be installed to run this program. Once installed run :
 
 ```
-gcc primefactor.c -o run
-./run
+// Compile
+gcc -c -g multiplier.c  ;
+gcc -c -g subtraction.c  ;
+gcc -c -g shifting.c  ;
+gcc -c -g findK.c  ;
+gcc -c -g Barretts.c   ;
+gcc -o main Barretts.o multiplier.o subtraction.o shifting.o findK.o
+
+// clean up
+rm *.o ; rm *.exe 
 ```
 
 ## Usage

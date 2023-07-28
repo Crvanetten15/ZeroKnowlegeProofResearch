@@ -29,3 +29,10 @@ gcc -c -g BarrettRed.c   ;
 gcc -o main BarrettRed.o multiplier.o subtraction.o shifting.o findK.o
 
 git add . ; git commit -m "V3.02"; git push origin main  
+
+gcc -c -g multiplier.c  ;
+gcc -c -g subtraction.c  ;
+gcc -c -g shifting.c  ;
+gcc -c -g findK.c  ;
+gcc -c -g Barretts.c   ;
+gcc -o main Barretts.o multiplier.o subtraction.o shifting.o findK.o
